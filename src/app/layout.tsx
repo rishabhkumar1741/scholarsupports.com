@@ -23,7 +23,7 @@ export default function RootLayout({
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
         <div >
           <Navbar/>
-          <div className="md:px-[8%] ">
+          <div className="md:px-[8%] px-[6%] ">
           {children}
           </div>
         </div>

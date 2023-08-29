@@ -1,19 +1,24 @@
 import {
     Cloud,
-    CreditCard,
+    PenSquare,
     Github,
-    Keyboard,
+    Baseline,
     LifeBuoy,
     LogOut,
-    Mail,
-    MessageSquare,
+    Lightbulb,
+    HelpCircle,
     Plus,
-    PlusCircle,
+    Cpu,
     Settings,
     User,
     UserPlus,
-    Users,
+    Laugh,
+    School,
+    Newspaper,
+    FlaskConical,
+    Upload,
   } from "lucide-react"
+  import Link from "next/link"
   import {AiOutlineMenu} from 'react-icons/ai'
   
   import { Button } from "@/components/ui/button"
@@ -44,61 +49,87 @@ import {
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56">
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
+          {/* separated */}
           <DropdownMenuSeparator />
+
           <DropdownMenuGroup>
             <DropdownMenuItem>
               <User className="mr-2 h-4 w-4" />
-              <span>Profile</span>
+              <Link href={`/profile`}><span>Profile</span></Link>
               <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
             </DropdownMenuItem>
-            <DropdownMenuItem>
-              <CreditCard className="mr-2 h-4 w-4" />
-              <span>Billing</span>
-              <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
-            </DropdownMenuItem>
+           
             <DropdownMenuItem>
               <Settings className="mr-2 h-4 w-4" />
               <span>Settings</span>
               <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
             </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Keyboard className="mr-2 h-4 w-4" />
-              <span>Keyboard shortcuts</span>
-              <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
-            </DropdownMenuItem>
+            
           </DropdownMenuGroup>
+          {/* separated */}
           <DropdownMenuSeparator />
+
           <DropdownMenuGroup>
-            <DropdownMenuItem>
-              <Users className="mr-2 h-4 w-4" />
-              <span>Team</span>
-            </DropdownMenuItem>
-            <DropdownMenuSub>
+
+          <DropdownMenuSub>
               <DropdownMenuSubTrigger>
-                <UserPlus className="mr-2 h-4 w-4" />
-                <span>Invite users</span>
+                <School className="mr-2 h-4 w-4" />
+                <span>Colleges</span>
               </DropdownMenuSubTrigger>
               <DropdownMenuPortal>
                 <DropdownMenuSubContent>
                   <DropdownMenuItem>
-                    <Mail className="mr-2 h-4 w-4" />
-                    <span>Email</span>
+                    <Newspaper className="mr-2 h-4 w-4" />
+                    <span>Exam Papers</span>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <MessageSquare className="mr-2 h-4 w-4" />
-                    <span>Message</span>
+                    <FlaskConical className="mr-2 h-4 w-4" />
+                    <span>Subjects/Courses</span>
                   </DropdownMenuItem>
-                  <DropdownMenuSeparator />
                   <DropdownMenuItem>
-                    <PlusCircle className="mr-2 h-4 w-4" />
-                    <span>More...</span>
+                    <Upload className="mr-2 h-4 w-4" />
+                    <span>Upload Paper </span>
                   </DropdownMenuItem>
                 </DropdownMenuSubContent>
               </DropdownMenuPortal>
             </DropdownMenuSub>
+
+            <DropdownMenuSub>
+              <DropdownMenuSubTrigger>
+                <PenSquare className="mr-2 h-4 w-4" />
+                <span>Blog/Articles/Resources</span>
+              </DropdownMenuSubTrigger>
+              <DropdownMenuPortal>
+                <DropdownMenuSubContent>
+                  <DropdownMenuItem>
+                    <Cpu className="mr-2 h-4 w-4" />
+                    <span>New Technology</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Laugh className="mr-2 h-4 w-4" />
+                    <span>Colleges Life</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Lightbulb className="mr-2 h-4 w-4" />
+                    <span>Other</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Baseline className="mr-2 h-4 w-4" />
+                    <span>All-Inclusive</span>
+                  </DropdownMenuItem>
+              
+                  {/* <DropdownMenuItem>
+                    <PlusCircle className="mr-2 h-4 w-4" />
+                    <span>More...</span>
+                  </DropdownMenuItem> */}
+                </DropdownMenuSubContent>
+              </DropdownMenuPortal>
+            </DropdownMenuSub>
+
+
             <DropdownMenuItem>
-              <Plus className="mr-2 h-4 w-4" />
-              <span>New Team</span>
+              <HelpCircle className="mr-2 h-4 w-4" />
+              <span>About as</span>
               <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
             </DropdownMenuItem>
           </DropdownMenuGroup>

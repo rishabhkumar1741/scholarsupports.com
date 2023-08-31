@@ -22,8 +22,8 @@ export default function Home() {
             Sign up for our email list today to get started!
           </p>
 
-          <button className=" p-3 font-mono text-md rounded-xl bg-gradient-to-r from-blue-600 to-violet-600">
-            <Link href="/signup">Sign up for access</Link>
+          <button className=" hover:px-6 duration-1000 p-3 font-mono text-md rounded-xl bg-gradient-to-r from-blue-600 to-violet-600">
+            <Link className="text-white" href="/signup">Sign up for access</Link>
           </button>
         </div>
 

@@ -1,11 +1,14 @@
+"use client"
 import Link from "next/link";
 import { DropdownMenuDemo } from "@/components/MobileMenu";
 import { ModeToggle } from "@/components/modeToggle";
 import { NavigationMenuDemo } from "@/components/NavigationMenuDemo";
 import { ButtonDemo } from "@/components/Button";
 import Image from "next/image";
+import { useTheme } from 'next-themes'
 
 export function Navbar() {
+  const { theme, setTheme } = useTheme();
   return (
     <>
       <nav className="bg-white border-gray-200 dark:bg-black">
@@ -32,7 +35,11 @@ export function Navbar() {
             <NavigationMenuDemo />
             <div className="flex gap-6">
               <ModeToggle />
-              <ButtonDemo value="Log In" />
+              
+              <button className={`${theme=="light"?"text-white bg-green-500  ":" text-black bg-white p-2  "}px-3 p-2 rounded-lg` }>
+              <Link href={`/login`}>Log In</Link>
+              </button>
+              
             </div>
           </div>
         </div>

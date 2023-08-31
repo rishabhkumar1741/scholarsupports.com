@@ -17,6 +17,7 @@ import {
     Newspaper,
     FlaskConical,
     Upload,
+    LogIn,
   } from "lucide-react"
   import Link from "next/link"
   import {AiOutlineMenu} from 'react-icons/ai'
@@ -148,8 +149,8 @@ import {
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <LogOut className="mr-2 h-4 w-4" />
-            <span>Log out</span>
+            <LogIn className="mr-2 h-4 w-4" />
+            <Link href={`/login`}><span>Log In</span></Link>
             <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
           </DropdownMenuItem>
         </DropdownMenuContent>

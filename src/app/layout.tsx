@@ -2,6 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from "@/components/theme-provider"
+import toast,{Toaster} from 'react-hot-toast'
 
 
 import { Navbar } from '@/components/Navbar'
@@ -27,6 +28,7 @@ export default function RootLayout({
           {children}
           </div>
         </div>
+        <Toaster position='top-center' />
         
       </ThemeProvider>
         </body>

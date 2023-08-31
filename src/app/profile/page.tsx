@@ -1,9 +1,14 @@
+"use client"
+import { useTheme } from 'next-themes'
 
-
-export default function profile()
+export default function Profile()
 {
-    
-   
-    
-    return <><h1>Profile  </h1></>
+  const { theme, setTheme } = useTheme()
+
+  return (
+    <div>
+      Rishabh
+      
+    </div>
+  )
 }

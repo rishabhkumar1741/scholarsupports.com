@@ -73,18 +73,13 @@ export function SignUpForm() {
           password: values.password,
         };
         const response:any = await axios.post("/api/users/signup", data);
-        console.log(response,"response object");
+        
         
         if(response.status=201)
         {
           toast.success(response.message);
           route.push('/login')
         } 
-        if(response.status=409)
-        {
-          console.log("409 error");
-          
-        }
       }
     } catch (error:any) {
       toast.error(error.response.data.message);

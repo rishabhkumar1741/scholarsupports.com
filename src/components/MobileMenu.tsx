@@ -130,7 +130,7 @@ import {
 
             <DropdownMenuItem>
               <HelpCircle className="mr-2 h-4 w-4" />
-              <span>About as</span>
+              <span>About us</span>
               <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
             </DropdownMenuItem>
           </DropdownMenuGroup>

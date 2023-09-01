@@ -22,13 +22,26 @@ import {
 import { useTheme } from "next-themes";
 import { useState } from "react";
 import Link from "next/link";
+import axios from "axios";
+import {toast} from 'react-hot-toast';
+import { useRouter } from "next/navigation";
 
 export  function LoginPage() {
   const { theme, setTheme } = useTheme();
   const [user, setuser] = useState({ email: "", password: "" });
-  const submitform = (e: any) => {
+  const route = useRouter();
+  const submitform = async (e: any) => {
     e.preventDefault();
-    console.log(user);
+    try {
+      const response:any = await axios.post('/api/users/login',user) 
+      if(response.status==200)
+      {
+        toast.success(response.data.message);
+        route.push("/profile");
+      }
+    } catch (error:any) {
+      toast.error(error.response.data.message)
+    }
   };
 
   return (

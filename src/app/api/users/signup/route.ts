@@ -32,11 +32,15 @@ export async function POST(request: NextRequest) {
     const saveduser = await createdUser.save();
     //send verification email
     if (saveduser) {
-      await sendEmail({ email, emailType: "VERIFY", userId: saveduser._id });
-      return NextResponse.json(
-        { message: "User is Created successfully" },
-        { status: 201 }
-      );
+      try {
+        await sendEmail({ email, emailType: "VERIFY", userId: saveduser._id });
+      } catch (error) {
+      } finally {
+        return NextResponse.json(
+          { message: "User is Created successfully" },
+          { status: 201 }
+        );
+      }
     } else {
       throw Error("Error while creating the user");
     }

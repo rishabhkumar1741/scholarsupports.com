@@ -73,11 +73,12 @@ export function SignUpForm() {
           password: values.password,
         };
         const response:any = await axios.post("/api/users/signup", data);
+        console.log(response);
         
         
         if(response.status=201)
         {
-          toast.success(response.message);
+          toast.success(response.data.message);
           route.push('/login')
         } 
       }

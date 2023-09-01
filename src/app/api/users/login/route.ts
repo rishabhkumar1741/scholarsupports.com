@@ -36,8 +36,6 @@ export async function POST(request: NextRequest) {
     //create a token data
     const tokendata = {
       id:user._id,
-      firstname:user.firstname,
-      lastname : user.lastname ,
       email:user.email
     }
     //create token

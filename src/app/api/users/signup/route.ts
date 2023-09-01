@@ -2,6 +2,7 @@ import { connect } from "@/app/dbConfig/dbConfig";
 import { NextRequest, NextResponse } from "next/server";
 import User from "@/app/models/userModel";
 import bcryptjs from "bcryptjs";
+import { sendEmail } from "@/app/helper/mailer";
 connect();
 
 export async function POST(request: NextRequest) {
@@ -28,12 +29,17 @@ export async function POST(request: NextRequest) {
       email,
       password: hashedPassword,
     });
-    await createdUser.save();
-
-    return NextResponse.json(
-      { message: "User registration successful" },
-      { status: 201 }
-    );
+    const saveduser = await createdUser.save();
+    //send verification email
+    if (saveduser) {
+      await sendEmail({ email, emailType: "VERIFY", userId: saveduser._id });
+      return NextResponse.json(
+        { message: "User is Created successfully" },
+        { status: 201 }
+      );
+    } else {
+      throw Error("Error while creating the user");
+    }
   } catch (error: any) {
     return NextResponse.json({ meaasge: error.meaasge }, { status: 500 });
   }

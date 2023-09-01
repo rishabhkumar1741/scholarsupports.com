@@ -14,7 +14,7 @@ const userSchema  = new mongoose.Schema({
     forgotpasswordtoken:String,
     forgotpasswordtokenexpiry:Date,
     verifytoken:String,
-    verifytoken:Date,
+    verifytokenexpiry:Date,
     },{timestamps : true});
 
 

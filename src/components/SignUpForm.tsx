@@ -26,7 +26,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import {toast} from 'react-hot-toast';
+import { toast } from "react-hot-toast";
 const validationSchema = z.object({
   firstname: z
     .string()
@@ -72,17 +72,21 @@ export function SignUpForm() {
           email: values.email,
           password: values.password,
         };
-        const response:any = await axios.post("/api/users/signup", data);
+        const response: any = await axios.post("/api/users/signup", data);
         console.log(response);
-        
-        
-        if(response.status=201)
-        {
+
+        if ((response.status = 201)) {
           toast.success(response.data.message);
-          route.push('/login')
-        } 
+          toast(
+            "Email verification sent. Please check your inbox.",
+            {
+              duration: 6000,
+            }
+          ); 
+          route.push("/login");
+        }
       }
-    } catch (error:any) {
+    } catch (error: any) {
       toast.error(error.response.data.message);
     } finally {
       setbuttonDisable(false);

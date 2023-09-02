@@ -2,12 +2,13 @@
 import { useTheme } from 'next-themes'
 import axios from 'axios'
 import { useRouter } from "next/navigation";
-import { use, useEffect,useState } from 'react';
-
+import {  useEffect,useState } from 'react';
+import { useGlobalContext } from '../Context/store';
 export default function Profile()
 {
   const route = useRouter();
   const [user,setUser] = useState({ _id: '', firstname: '', lastname: '', email: '',createdAt:"",isverified:"",role:{isadmin:true,iseditor:false},updatedAt:""});
+  const {userloginornot,setuserloginornot} = useGlobalContext();
   async function submit()
   { 
     const responce = await axios.get('/api/users/logout')
@@ -26,6 +27,7 @@ export default function Profile()
       
     }
      getdata();
+     setuserloginornot(true);
   },[])
   
 
@@ -33,6 +35,9 @@ export default function Profile()
     <div>
   <button className='bg-green-500 p-3' onClick={submit}>Logout</button>
       <h1>{user.firstname}</h1>
+      <h1>
+        Rishabh kumar {` value is ${userloginornot}` }
+      </h1>
     </div>
   )
 }

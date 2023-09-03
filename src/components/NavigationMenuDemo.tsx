@@ -66,13 +66,13 @@ export function NavigationMenuDemo() {
                   </Link>
                 </NavigationMenuLink>
               </li>
-              <ListItem href="/docs" title="Exam Papers">
+              <ListItem href="/exampapers" title="Exam Papers">
               Access a variety of past exam papers.
               </ListItem>
               <ListItem href="/docs/installation" title="Subjects/Courses">
               Find papers by subjects and courses.
               </ListItem>
-              <ListItem href="/docs/primitives/typography" title="Upload Paper">
+              <ListItem href="/uploadpapers" title="Upload Paper">
               Contribute your own past exam papers.
               </ListItem>
             </ul>

@@ -81,7 +81,7 @@ import {
                 <DropdownMenuSubContent>
                   <DropdownMenuItem>
                     <Newspaper className="mr-2 h-4 w-4" />
-                    <span>Exam Papers</span>
+                    <Link href={`/exampapers`}><span>Exam Papers </span></Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <FlaskConical className="mr-2 h-4 w-4" />
@@ -89,7 +89,8 @@ import {
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <Upload className="mr-2 h-4 w-4" />
-                    <span>Upload Paper </span>
+                    <Link href={`/uploadpapers`}><span>Upload Paper </span></Link>
+                    
                   </DropdownMenuItem>
                 </DropdownMenuSubContent>
               </DropdownMenuPortal>

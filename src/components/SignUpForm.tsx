@@ -45,7 +45,7 @@ const validationSchema = z.object({
   confirmpassword: z.string().trim().min(8).nonempty(),
 });
 
-export function SignUpForm() {
+export  function SignUpForm() {
   const { theme, setTheme } = useTheme();
   const [buttonDisable, setbuttonDisable] = useState(false);
   const route = useRouter();

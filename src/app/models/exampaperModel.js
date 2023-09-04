@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 
 
 const exampaperSchema  = new mongoose.Schema({
+    fileurl:{type:String,required:[true,"Fileurl  is required "]},
     filename:{type:String,required:[true,"subject  is required "]},
     course:{type:String,required:[true,"Course Name is required "]},
     semester:{type:String,required:[true,"semester Name is required "]},
@@ -13,8 +14,9 @@ const exampaperSchema  = new mongoose.Schema({
     level:{type:String,required:[true,"level  is required "]},
     batch:{type:String,required:[true,"batch  is required "]},
     subject:{type:String,required:[true,"subject  is required "]},
-    user:{type:String,ref:"users",required:true}
-
+    
+    user:{type:String,ref:"users",required:true},
+    
     },{timestamps : true});
 
 

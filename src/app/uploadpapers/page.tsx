@@ -26,7 +26,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -39,20 +38,30 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 const validationSchema = z.object({
-  course: z.string().trim(),
-  semester: z.string().trim(),
-  college: z.string().trim(),
-  papertype: z.string().trim(),
-  level: z.string().trim(),
-  batch: z.string(),
-  subject: z.string().trim(),
+  course: z.string().trim().min(2),
+  semester: z.string().trim().min(2),
+  college: z.string().trim().min(2),
+  papertype: z.string().trim().min(2),
+  level: z.string().trim().min(2),
+  batch: z.string().min(4),
+  subject: z.string().trim().min(2),
 });
-
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { storage } from "@/app/firebaseConfig/firebaseConfig";
 export default function UplaodForm() {
   const { theme, setTheme } = useTheme();
   const [buttonDisable, setbuttonDisable] = useState(false);
   const [file, setfile] = useState<File>();
   const route = useRouter();
+
+  //file upload function
+  async function uplaodfiledata(data: any) {
+    const res = await axios.post("/api/users/paperpost", data);
+    if (res.status == 201) {
+      toast.success("done");
+    }
+    setbuttonDisable(false);
+  }
   // 1. Define your form.
   const form = useForm({
     resolver: zodResolver(validationSchema),
@@ -70,33 +79,68 @@ export default function UplaodForm() {
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof validationSchema>) {
     try {
-      // setbuttonDisable(true);
+      console.log("on submit is start running ");
+      setbuttonDisable(true);
       // console.log(values);
-      const data = new FormData();
-
-      data.set("file", file || "");
-      data.set("course", values.course);
-      data.set("semester", values.semester);
-      data.set("college", values.college);
-      data.set("papertype", values.papertype);
-      data.set("level", values.level);
-      data.set("batch", values.batch);
-      data.set("subject", values.subject);
- 
-      
-      const res = await axios.post("/api/users/paperpost", data);
-      if(res.status==201)
-      {
-        toast.success("done")
-      }
-     
-      console.log(res);
+      const filename =
+        values.college +
+        "" +
+        values.course +
+        "" +
+        values.semester +
+        "" +
+        values.papertype +
+        "" +
+        values.batch +
+        "date" +
+        Date.now() +
+        "." +
+        file?.name.split(".").pop();
+      const allfiledata = {
+        filename: filename,
+        course: values.course,
+        semester: values.semester,
+        college: values.college,
+        papertype: values.papertype,
+        level: values.level,
+        batch: values.batch,
+        subject: values.subject,
+        fileurl: "",
+      };
+      const storageRef = ref(storage, `papers/${filename}`);
+      const uploadTask = uploadBytesResumable(storageRef, file!);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          // Observe state change events such as progress, pause, and resume
+          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+          }
+        },
+        (error) => {
+          // Handle unsuccessful uploads
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+            allfiledata.fileurl = url;
+            uplaodfiledata(allfiledata);
+          });
+        }
+      );
     } catch (error: any) {
       toast.error(error.response.data.message);
-    } finally {
-      setbuttonDisable(false);
     }
   }
+
   return (
     <div className="flex justify-center mt-3 md:mt-5">
       <Card className="w-[350px] md:w-[50%]">
@@ -116,7 +160,7 @@ export default function UplaodForm() {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <div className=" flex justify-between gap-6 ">
                 <div className="w-[50%]">
-                  <FormField
+                <FormField
                     control={form.control}
                     name="course"
                     render={({ field }) => (
@@ -137,6 +181,7 @@ export default function UplaodForm() {
                             <SelectItem value="mtech">Mtech</SelectItem>
                           </SelectContent>
                         </Select>
+                        <FormMessage />
                       </FormItem>
                     )}
                   />
@@ -166,6 +211,7 @@ export default function UplaodForm() {
                             <SelectItem value="sem6">sem6</SelectItem>
                           </SelectContent>
                         </Select>
+                        <FormMessage />
                       </FormItem>
                     )}
                   />
@@ -198,6 +244,7 @@ export default function UplaodForm() {
                         <SelectItem value="other">Other</SelectItem>
                       </SelectContent>
                     </Select>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -223,6 +270,7 @@ export default function UplaodForm() {
                             <SelectItem value="final">Final</SelectItem>
                           </SelectContent>
                         </Select>
+                        <FormMessage />
                       </FormItem>
                     )}
                   />
@@ -249,6 +297,7 @@ export default function UplaodForm() {
                             <SelectItem value="easy">Easy</SelectItem>
                           </SelectContent>
                         </Select>
+                        <FormMessage />
                       </FormItem>
                     )}
                   />
@@ -272,13 +321,13 @@ export default function UplaodForm() {
                           <div className="grid w-full max-w-sm items-center gap-1.5">
                             <input
                               name="file"
+                              required
                               onChange={(e) => setfile(e.target.files?.[0])}
                               id="file"
                               type="file"
                             />
                           </div>
                         </FormControl>
-
                         <FormMessage />
                       </FormItem>
                     )}
@@ -294,7 +343,7 @@ export default function UplaodForm() {
                         <FormControl>
                           <Input type="number" placeholder=" 2022" {...field} />
                         </FormControl>
-                        
+                        <FormMessage />
                       </FormItem>
                     )}
                   />
@@ -308,9 +357,13 @@ export default function UplaodForm() {
                   <FormItem>
                     <FormLabel> Enter The Subject Name</FormLabel>
                     <FormControl>
-                      <Input type="text" placeholder="ex operating system " {...field} />
+                      <Input
+                        type="text"
+                        placeholder="ex operating system "
+                        {...field}
+                      />
                     </FormControl>
-                   
+
                     <FormMessage />
                   </FormItem>
                 )}

@@ -11,7 +11,7 @@ export function PaperCard({carddata}:any)
         <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <Link href={`/papers/${carddata.filename}`}>
             {/* <embed  className="rounded-t-lg" src="https://sumanbogati.github.io/tiny.pdf" width="600px" height="500px" />  */}
-            <object className="rounded-t-lg w-full"  data={`/papers/${carddata.filename}`} >
+            <object className="rounded-t-lg w-full"  data={`${carddata.fileurl}`} >
             </object>
             </Link>
             

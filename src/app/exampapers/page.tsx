@@ -18,10 +18,12 @@ export default function ExamPapers() {
   useEffect(() => {
     async function getallpaper() {
       const res = await axios.get("/api/allpapers");
+      console.log(res.data.fileList);
+      
       setallpaper(res.data.fileList);
     }
     getallpaper();
-  });
+  },[]);
 
   return (
     <div>

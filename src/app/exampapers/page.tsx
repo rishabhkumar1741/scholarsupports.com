@@ -12,23 +12,44 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import useSWR from 'swr'
+import useSWR from "swr";
 import { any } from "zod";
+import { Button } from "@/components/ui/button";
 export default function ExamPapers() {
+  const [allpaper, setallpaper] = useState([]);
+  function paperload() {
+    async function getallpaper() {
+      const res = await axios.get("/api/allpapers");
+      console.log(res.data.fileList);
 
-  const fetcher = (url:any) => axios.get(url).then(res => res.data.fileList)
+      setallpaper(res.data.fileList);
+    }
+    getallpaper();
+  }
 
-  const {data,error}:{}[]|any= useSWR('/api/allpapers',fetcher);
+  useEffect(() => {
+    async function getallpaper() {
+      const res = await axios.get("/api/allpapers");
+      console.log(res.data.fileList);
+
+      setallpaper(res.data.fileList);
+    }
+    getallpaper();
+  }, []);
+
   return (
     <div>
       <div className="mb-6">
         <section className="bg-white dark:bg-gray-900">
           <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
             <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-            Explore Previous Year Exam Papers
+              Explore Previous Year Exam Papers
             </h1>
             <p className="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">
-            Welcome to ScholarSupports collection of previous year exam papers. Access valuable resources to improve your exam preparation. Gain insights into exam formats and types of questions. Start exploring now to excel in your studies!
+              Welcome to ScholarSupports collection of previous year exam
+              papers. Access valuable resources to improve your exam
+              preparation. Gain insights into exam formats and types of
+              questions. Start exploring now to excel in your studies!
             </p>
             <div className="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
               <Link
@@ -62,7 +83,7 @@ export default function ExamPapers() {
           </div>
         </section>
       </div>
-      <div className="my-6">
+      <div className="my-6 flex">
         <Select>
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Select a Course" />
@@ -73,18 +94,16 @@ export default function ExamPapers() {
               <SelectItem value="MCA">MCA</SelectItem>
               <SelectItem value="Btech">Btech</SelectItem>
               <SelectItem value="Mtech">Mtech</SelectItem>
-           
             </SelectGroup>
           </SelectContent>
         </Select>
+        <Button onClick={paperload} className="py-1 ml-2 cursor-pointer">
+          Load all Papers
+        </Button>
       </div>
       <div className="grid grid-cols md:grid-cols-3 gap-4">
-        {data?.map((data:any, index:any) => {
-          return (
-            
-              <PaperCard carddata={data}  key={index} />
-         
-          );
+        {allpaper?.map((data: any, index: any) => {
+          return <PaperCard carddata={data} key={index} />;
         })}
       </div>
     </div>

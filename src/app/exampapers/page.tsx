@@ -12,19 +12,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import useSWR from 'swr'
+import { any } from "zod";
 export default function ExamPapers() {
-  const [allpaper, setallpaper] = useState([]);
 
-  useEffect(() => {
-    async function getallpaper() {
-      const res = await axios.get("/api/allpapers");
-      console.log(res.data.fileList);
-      
-      setallpaper(res.data.fileList);
-    }
-    getallpaper();
-  },[]);
+  const fetcher = (url:any) => axios.get(url).then(res => res.data.fileList)
 
+  const {data,error}:{}[]|any= useSWR('/api/allpapers',fetcher);
   return (
     <div>
       <div className="mb-6">
@@ -85,7 +79,7 @@ export default function ExamPapers() {
         </Select>
       </div>
       <div className="grid grid-cols md:grid-cols-3 gap-4">
-        {allpaper.map((data:any, index) => {
+        {data?.map((data:any, index:any) => {
           return (
             
               <PaperCard carddata={data}  key={index} />

@@ -9,7 +9,7 @@ connect();
 export async function POST(request: NextRequest) {
   try {
     const paperinfo = await request.json()
-    console.log(paperinfo,"data is ");
+
     const userid = await getDataFromToken(request);
     const createPaper = new ExamPapers({
       ...paperinfo,
@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
       fileurl:paperinfo.fileurl
     });
     const savepaperinfo = await createPaper.save();
-    console.log(savepaperinfo,"saved paper info");
+
     
 
     

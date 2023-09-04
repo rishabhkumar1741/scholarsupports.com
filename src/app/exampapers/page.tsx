@@ -17,15 +17,7 @@ import { any } from "zod";
 import { Button } from "@/components/ui/button";
 export default function ExamPapers() {
   const [allpaper, setallpaper] = useState([]);
-  function paperload() {
-    async function getallpaper() {
-      const res = await axios.get("/api/allpapers");
-      console.log(res.data.fileList);
 
-      setallpaper(res.data.fileList);
-    }
-    getallpaper();
-  }
 
   useEffect(() => {
     async function getallpaper() {
@@ -97,9 +89,7 @@ export default function ExamPapers() {
             </SelectGroup>
           </SelectContent>
         </Select>
-        <Button onClick={paperload} className="py-1 ml-2 cursor-pointer">
-          Load all Papers
-        </Button>
+     
       </div>
       <div className="grid grid-cols md:grid-cols-3 gap-4">
         {allpaper?.map((data: any, index: any) => {
@@ -109,3 +99,6 @@ export default function ExamPapers() {
     </div>
   );
 }
+
+
+export const revalidate = 0

@@ -38,10 +38,22 @@ import {
     DropdownMenuSubTrigger,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
+  import axios from "axios";
+  import { useRouter } from "next/navigation";
   
   export function DropdownMenuDemo() {
+    const route = useRouter();
     const {userloginornot,setuserloginornot} = useGlobalContext();
-    console.log(userloginornot);
+    async function logoutsubmit()
+  { 
+    const responce = await axios.get('/api/users/logout')
+    if(responce.status==200){
+      setuserloginornot(false)
+      route.push('/')
+      
+    }
+  }
+    
     
     return (
       <DropdownMenu>
@@ -156,7 +168,8 @@ import {
           <DropdownMenuSeparator />
           <DropdownMenuItem>
             <LogIn className="mr-2 h-4 w-4" />
-            <Link href={`/login`}><span>Log In</span></Link>
+            {userloginornot?<Link href={"#"} onClick={logoutsubmit}> Log Out</Link>:<Link href={`/login`}><span>Log In</span></Link>}
+            
             <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
           </DropdownMenuItem>
         </DropdownMenuContent>

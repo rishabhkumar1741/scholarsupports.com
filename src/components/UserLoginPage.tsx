@@ -40,7 +40,7 @@ export  function LoginPage() {
       {
         toast.success(response.data.message);
         setuserloginornot(true);
-        route.push("/profile");
+        route.push("/");
       }
     } catch (error:any) {
       toast.error(error.response.data.message)

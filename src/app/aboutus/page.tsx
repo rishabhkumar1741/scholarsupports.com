@@ -41,21 +41,21 @@ export default function Aboutus() {
           
               <Link
                 className="mr-6 mb-2  flex gap-4 items-center justify-center"
-                href="/"
+                href="https://www.instagram.com/rishabh_kumar_1741/"
               >
                 <BsInstagram />
                 <span className="text-2xl"> Follow on Instagram</span>
               </Link>
               <Link
                 className="mr-6 mb-2 flex gap-4 items-center justify-center"
-                href="/"
+                href="https://www.linkedin.com/in/rishabhkumar1741/"
               >
                 <FaLinkedin />
                 <span className="text-xl"> Follow on LinkedIn</span>
               </Link>
               <Link
                 className="mr-6 mb-2 flex gap-4 items-center justify-center"
-                href="/"
+                href="https://github.com/rishabhkumar1741"
               >
                 <BsGithub />
                 <span> Follow on GitHub</span>
@@ -67,21 +67,21 @@ export default function Aboutus() {
       <div className=" md:hidden px-10 text-gray-400 text-lg">
               <Link
                 className="mr-6 mb-2 flex gap-4  justify-start items-center"
-                href="/"
+                href="https://www.instagram.com/rishabh_kumar_1741/"
               >
                 <BsInstagram />
                 <span> Follow on Instagram</span>{" "}
               </Link>
               <Link
                 className="mr-6 mb-2 flex gap-4  justify-start items-center"
-                href="/"
+                href="https://www.linkedin.com/in/rishabhkumar1741/"
               >
                 <FaLinkedin />
                 <span> Follow on LinkedIn</span>{" "}
               </Link>
               <Link
                 className="mr-6 mb-2 flex gap-4  justify-start items-center"
-                href="/"
+                href="https://github.com/rishabhkumar1741"
               >
                 <BsGithub />
                 <span> Follow on GitHub</span>{" "}

@@ -12,21 +12,21 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import useSWR from "swr";
-import { any } from "zod";
-import { Button } from "@/components/ui/button";
+import { useGlobalContext } from '../Context/store';
+
 export default function ExamPapers() {
   const [allpaper, setallpaper] = useState([]);
+  const {userloginornot,setuserloginornot} = useGlobalContext();
 
 
   useEffect(() => {
     async function getallpaper() {
       const res = await axios.get("/api/allpapers");
-      console.log(res.data.fileList);
-
       setallpaper(res.data.fileList);
     }
     getallpaper();
+    setuserloginornot(true);
+    
   }, []);
 
   return (

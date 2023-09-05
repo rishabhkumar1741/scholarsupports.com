@@ -61,6 +61,7 @@ export default function UplaodForm() {
       toast.success("done");
     }
     setbuttonDisable(false);
+    route.push('/uploadpapers')
   }
   // 1. Define your form.
   const form = useForm({

@@ -10,10 +10,10 @@ export default function Aboutus() {
       <div className="flex flex-col-reverse  md:flex md:flex-row">
         <div className="md:w-[70%] p-10">
           <h1 className="text-5xl block font-extrabold mb-8">
-          I’m Rishabh Kumar. I live in New Delhi City, where I create digital products that help people learn and grow.
+          I&apos;m Rishabh Kumar. I live in New Delhi City, where I create digital products that help people learn and grow.
           </h1>
           <p className="mb-8 text-gray-400">
-          Greetings! I'm Rishabh Kumar, and I proudly call the bustling city of Delhi my home. My journey into the realm of technology and programming commenced during my initial year of undergraduate studies. My insatiable curiosity for unraveling the mysteries of technology led me into the fascinating world of coding.
+          Greetings! I&apos;m Rishabh Kumar, and I proudly call the bustling city of Delhi my home. My journey into the realm of technology and programming commenced during my initial year of undergraduate studies. My insatiable curiosity for unraveling the mysteries of technology led me into the fascinating world of coding.
           </p>
           <p className="mb-8 text-gray-400">
           My coding expedition kick-started with the C programming language, laying a solid foundation in the realm of computer science. Hungry for knowledge, I soon delved into the complexities of C++, mastering the art of object-oriented programming. My passion for learning and coding grew exponentially.
@@ -22,7 +22,7 @@ export default function Aboutus() {
           As I continued my exploration of the ever-evolving tech landscape, my curiosity guided me toward the dynamic domain of web development. This marked a significant turning point in my journey. Armed with my coding prowess, I embarked on a creative adventure, crafting a variety of websites. Each project pushed my boundaries, fostering a spirit of innovation. Notably, Scholarsupport stands as a testament to my commitment to providing valuable online resources.
           </p>
           <p className="mb-8 text-gray-400">
-          Expanding on my undergraduate experience, I pursued a master's degree at VIT Bhopal. This academic journey allowed me to dive deeper into the world of computer science and software engineering, equipping me with the knowledge and skills crucial for my growth as a programmer. Today, I proudly identify as a full-stack web developer, with my diverse portfolio highlighting my expertise. I am deeply passionate about staying at the forefront of web development trends and technologies, continually seeking to deliver cutting-edge solutions. You can explore my extensive body of work, including ongoing projects, on my GitHub profile, where I constantly push the boundaries of what's possible in web development. I'm always open to new opportunities and collaborations, so please feel free to reach out and connect with me. Let's embark on a journey together to explore the limitless possibilities the digital world has to offer!
+          Expanding on my undergraduate experience, I pursued a master&apos;s degree at VIT Bhopal. This academic journey allowed me to dive deeper into the world of computer science and software engineering, equipping me with the knowledge and skills crucial for my growth as a programmer. Today, I proudly identify as a full-stack web developer, with my diverse portfolio highlighting my expertise. I am deeply passionate about staying at the forefront of web development trends and technologies, continually seeking to deliver cutting-edge solutions. You can explore my extensive body of work, including ongoing projects, on my GitHub profile, where I constantly push the boundaries of what&apos;s possible in web development. I&apos;m always open to new opportunities and collaborations, so please feel free to reach out and connect with me. Let&apos;s embark on a journey together to explore the limitless possibilities the digital world has to offer!
           </p>
 
           

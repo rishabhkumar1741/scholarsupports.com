@@ -1,9 +1,15 @@
+
 import Image from "next/image";
 import { ModeToggle } from "@/components/modeToggle";
 import { Navbar } from "@/components/Navbar";
 import { ButtonDemo } from "@/components/Button";
+
+
 import Link from "next/link";
 export default function Home() {
+
+
+  
   return (
     <header className=" ">
       <div className=" justify-center items-center md:flex gap-32 ">

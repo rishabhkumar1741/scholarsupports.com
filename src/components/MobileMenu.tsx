@@ -19,6 +19,7 @@ import {
     Upload,
     LogIn,
   } from "lucide-react"
+  import { useGlobalContext } from '@/app/Context/store';
   import Link from "next/link"
   import {AiOutlineMenu} from 'react-icons/ai'
   
@@ -39,6 +40,9 @@ import {
   } from "@/components/ui/dropdown-menu"
   
   export function DropdownMenuDemo() {
+    const {userloginornot,setuserloginornot} = useGlobalContext();
+    console.log(userloginornot);
+    
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
@@ -131,7 +135,8 @@ import {
 
             <DropdownMenuItem>
               <HelpCircle className="mr-2 h-4 w-4" />
-              <span>About us</span>
+              <Link href={`/aboutus`}><span>About us</span></Link>
+              
               <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
             </DropdownMenuItem>
           </DropdownMenuGroup>

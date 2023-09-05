@@ -4,11 +4,26 @@ import { DropdownMenuDemo } from "@/components/MobileMenu";
 import { ModeToggle } from "@/components/modeToggle";
 import { NavigationMenuDemo } from "@/components/NavigationMenuDemo";
 import { ButtonDemo } from "@/components/Button";
+import { useGlobalContext } from '@/app/Context/store';
 import Image from "next/image";
 import { useTheme } from 'next-themes'
+import axios from "axios";
+import {useRouter} from "next/navigation";
 
 export function Navbar() {
+  const route = useRouter();
+
+  const {userloginornot,setuserloginornot} = useGlobalContext();
   const { theme, setTheme } = useTheme();
+  async function logoutsubmit()
+  { 
+    const responce = await axios.get('/api/users/logout')
+    if(responce.status==200){
+      setuserloginornot(false)
+      route.push('/')
+      
+    }
+  }
   return (
     <>
       <nav className="bg-white border-gray-200 dark:bg-black">
@@ -35,11 +50,11 @@ export function Navbar() {
             <NavigationMenuDemo />
             <div className="flex gap-6">
               <ModeToggle />
-              
-              <button className={`${theme=="light"?"text-white bg-green-500  ":" text-black bg-white p-2  "}px-3 p-2 rounded-lg` }>
+              {userloginornot?<button onClick={logoutsubmit} className={`${theme=="light"?"text-white bg-green-500  ":" text-black bg-white p-2  "}px-3 p-2 rounded-lg` }>
+              Log Out
+              </button>:<button className={`${theme=="light"?"text-white bg-green-500  ":" text-black bg-white p-2  "}px-3 p-2 rounded-lg` }>
               <Link href={`/login`}>Log In</Link>
-              </button>
-              
+              </button>}       
             </div>
           </div>
         </div>

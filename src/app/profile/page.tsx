@@ -17,7 +17,7 @@ export default function Profile()
     }
   }
 
-  useEffect(()=>{
+  useEffect(()=>{ 
     async function getdata()
     {
       const data = await axios.get('/api/users/userinfo');

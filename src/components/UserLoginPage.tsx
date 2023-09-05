@@ -25,8 +25,10 @@ import Link from "next/link";
 import axios from "axios";
 import {toast} from 'react-hot-toast';
 import { useRouter } from "next/navigation";
+import { useGlobalContext } from '@/app/Context/store';
 
 export  function LoginPage() {
+  const {userloginornot,setuserloginornot} = useGlobalContext();
   const { theme, setTheme } = useTheme();
   const [user, setuser] = useState({ email: "", password: "" });
   const route = useRouter();
@@ -37,6 +39,7 @@ export  function LoginPage() {
       if(response.status==200)
       {
         toast.success(response.data.message);
+        setuserloginornot(true);
         route.push("/profile");
       }
     } catch (error:any) {

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { FaLinkedin } from "react-icons/fa";
 
 
-export default function Aboutus() {
+export default function Aboutus() { 
   return (
     <div>
       <div className="flex flex-col-reverse  md:flex md:flex-row">

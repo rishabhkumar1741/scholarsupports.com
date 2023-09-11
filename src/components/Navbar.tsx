@@ -1,28 +1,23 @@
-"use client"
+"use client";
 import Link from "next/link";
 import { DropdownMenuDemo } from "@/components/MobileMenu";
 import { ModeToggle } from "@/components/modeToggle";
 import { NavigationMenuDemo } from "@/components/NavigationMenuDemo";
-import { ButtonDemo } from "@/components/Button";
-import { useGlobalContext } from '@/app/Context/store';
+
 import Image from "next/image";
-import { useTheme } from 'next-themes'
+import { useTheme } from "next-themes";
 import axios from "axios";
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 
 export function Navbar() {
   const route = useRouter();
-
-  const {userloginornot,setuserloginornot} = useGlobalContext();
+  const { data } = useSession();
   const { theme, setTheme } = useTheme();
-  async function logoutsubmit()
-  { 
-    const responce = await axios.get('/api/users/logout')
-    if(responce.status==200){
-      setuserloginornot(false)
-      route.push('/')
-      
-    }
+  async function logoutsubmit() {
+    signOut();
+    route.push("/");
   }
   return (
     <>
@@ -50,11 +45,28 @@ export function Navbar() {
             <NavigationMenuDemo />
             <div className="flex gap-6">
               <ModeToggle />
-              {userloginornot?<button onClick={logoutsubmit} className={`${theme=="light"?"text-white bg-green-500  ":" text-black bg-white p-2  "}px-3 p-2 rounded-lg` }>
-              Log Out
-              </button>:<button className={`${theme=="light"?"text-white bg-green-500  ":" text-black bg-white p-2  "}px-3 p-2 rounded-lg` }>
-              <Link href={`/login`}>Log In</Link>
-              </button>}       
+              {data?.user ? (
+                <button
+                  onClick={logoutsubmit}
+                  className={`${
+                    theme == "light"
+                      ? "text-white bg-green-500  "
+                      : " text-black bg-white p-2  "
+                  }px-3 p-2 rounded-lg`}
+                >
+                  Log Out
+                </button>
+              ) : (
+                <button
+                  className={`${
+                    theme == "light"
+                      ? "text-white bg-green-500  "
+                      : " text-black bg-white p-2  "
+                  }px-4 py-2  rounded-md  outline-none focus:ring-4 shadow-lg transform active:scale-75 transition-transform`}
+                >
+                  <Link href={`/login`}>Log In</Link>
+                </button>
+              )}
             </div>
           </div>
         </div>

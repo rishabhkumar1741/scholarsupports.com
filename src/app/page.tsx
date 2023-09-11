@@ -6,9 +6,11 @@ import { ButtonDemo } from "@/components/Button";
 
 
 import Link from "next/link";
-export default function Home() {
 
-
+export default async function Home() {
+ 
+ 
+  
   
   return (
     <header className=" ">

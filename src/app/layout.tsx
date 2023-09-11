@@ -3,9 +3,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import toast, { Toaster } from "react-hot-toast";
-import { GlobalContextProvider } from "./Context/store";
+
 
 import { Navbar } from "@/components/Navbar";
+import NextAuthSessionProvider from "./providers/sessionProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -21,17 +22,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <GlobalContextProvider>
-          <ThemeProvider attribute="class" defaultTheme="dark">
-            <div>
-              <Navbar />
+      
+          <NextAuthSessionProvider>
+            <ThemeProvider attribute="class" defaultTheme="dark">
+              <div>
+                <Navbar />
+                <div className="md:px-[8%] px-[6%] ">{children}</div>
+              </div>
 
-              <div className="md:px-[8%] px-[6%] ">{children}</div>
-            </div>
-
-            <Toaster position="top-center" />
-          </ThemeProvider>
-        </GlobalContextProvider>
+              <Toaster position="top-center" />
+            </ThemeProvider>
+          </NextAuthSessionProvider>
+   
       </body>
     </html>
   );

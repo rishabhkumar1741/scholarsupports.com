@@ -12,11 +12,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useGlobalContext } from '../Context/store';
+
 
 export default function ExamPapers() {
   const [allpaper, setallpaper] = useState([]);
-  const {userloginornot,setuserloginornot} = useGlobalContext();
+
 
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export default function ExamPapers() {
       setallpaper(res.data.fileList);
     }
     getallpaper();
-    setuserloginornot(true);
+    
     
   }, []);
 
